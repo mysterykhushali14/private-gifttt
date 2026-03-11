@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday!</title>
+<style>
+  /* --- General Styles --- */
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Dancing Script', cursive, sans-serif;
+    overflow-x: hidden;
+    background: #ffe0f0;
+    color: #ff3399;
+  }
+  section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 1s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  button {
+    background: #ff99cc;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+  }
+
+  /* --- Countdown Page --- */
+  #countdown {
+    background: linear-gradient(135deg, #ffc0cb, #ff99cc);
+    font-size: 2em;
+    text-align: center;
+  }
+
+  /* --- Home Page --- */
+  #home h1 {
+    font-size: 3em;
+    text-align: center;
+  }
+  #home img {
+    width: 300px;
+    border-radius: 20px;
+    margin-top: 20px;
+  }
+
+  /* --- Cake Cutting --- */
+  #cakeCut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  #cake {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(#ff6699, #ff99cc);
+    border-radius: 100px 100px 20px 20px;
+    position: relative;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  #cakePiece {
+    width: 80px;
+    height: 80px;
+    background: #ff66aa;
+    position: absolute;
+    bottom: -20px;
+    left: 60px;
+    display: none;
+    border-radius: 50% 50% 20% 20%;
+  }
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    animation: fall 1s forwards;
+  }
+  @keyframes fall {
+    0% {top: 0; opacity: 1;}
+    100% {top: 300px; opacity: 0;}
+  }
+
+  /* --- Slideshow --- */
+  #slideshow {
+    position: relative;
+    width: 80%;
+    height: 60%;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #ff99cc;
+  }
+  #slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  #slideshow img.active {
+    opacity: 1;
+  }
+
+  /* --- Love Letter --- */
+  #loveLetter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #envelope {
+    width: 300px;
+    height: 200px;
+    background: #ff99cc;
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: transform 1s;
+    z-index: 2;
+  }
+  #envelope.open {
+    transform: rotateX(180deg);
+  }
+  #letter {
+    width: 250px;
+    height: 180px;
+    background: #fff0f5;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    margin-top: 20px;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    z-index: 1;
+    text-align: center;
+  }
+
+  /* Hearts */
+  .heart {
+    position: absolute;
+    color: #ff3366;
+    font-size: 20px;
+    animation: floatUp 3s linear infinite;
+  }
+  @keyframes floatUp {
+    0% {transform: translateY(0) scale(1); opacity:1;}
+    100% {transform: translateY(-600px) scale(0.5); opacity:0;}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Page 1: Countdown -->
+<section id="countdown">
+  <div id="time">11:59 PM</div>
+  <div id="date">10 March</div>
+  <button onclick="countdownClick()">CLICKKKK
+
+  </button>
+</section>
+
+<!-- Page 2: Home -->
+<section id="home" style="display:none;">
+  <h1>Happy Birthdayyyyyy 🎉</h1><br>
+  <h2>19 alreadyyyy</h2>
+  <p>Mane tara paage lagann heheheheh  💖</p>
+  <img src="WhatsApp Image 2026-03-10 at 23.14.00.jpeg" alt="Us">
+  <button onclick="nextPage('cakeCut')">Cut the Cake!</button>
+</section>
+
+
+<!-- Page 3: Cake Cutting -->
+<section id="cakeCut" style="display:none;">
+  <h1>Click the Cake to Cut it! 🍰</h1>
+  <div id="cakeContainer">
+  <!-- Whole Cake -->
+  <img src="pink-cake-illustration-on-white-background-vector.webp" id="cake" alt="Cake" />
+
+  <!-- Cake Piece -->
+  <img src="cute-yummy-pink-cake-cartoon-illustration_194941-317.webp" id="cakePiece" alt="Cake Piece" />
+</div>
+  
+  <button onclick="nextPage('slideshowPage')">Next</button>
+</section>
+
+<!-- Page 4: Slideshow -->
+<section id="slideshowPage" style="display:none;">
+  <h1>Our Memories 💕(click)</h1>
+  <div id="slideshow">
+    <img src="WhatsApp Image 2026-03-10 at 22.57.26 (1).jpeg" class="active">
+    <img src="WhatsApp Image 2026-03-10 at 22.57.26 (2).jpeg">
+    <img src="WhatsApp Image 2026-03-10 at 22.57.26 (3).jpeg">
+    <img src="WhatsApp Image 2026-03-10 at 22.57.26.jpeg">
+    <img src="WhatsApp Image 2026-03-10 at 22.57.27.jpeg">
+  </div>
+  <button onclick="nextPage('loveLetter')">Next</button>
+</section>
+
+<!-- Page 5: Love Letter -->
+<section id="loveLetter" style="display:none;">
+  <h1>For You 💌</h1>
+  <div id="envelope" onclick="openLetter()">Click to Open</div>
+  <div id="letter">
+    <p>Dear Love,</p>
+    <p>Hapiiiiiiii BIrthdaayyyy cutieeeee... You're litreally one of the bestestttt personnn I've ever met. i tried ti make this as pretty as i could .ILYSM hope you liked it</p>
+    <p>Thank you for being you, for all the laughter, support, and love. I can’t wait to make more beautiful memories together. 🎂💖</p>
+    <p>Love always,</p>
+    <p>Khushu.</p>
+  </div>
+</section>
+
+<script>
+  // --- Page Navigation ---
+  function nextPage(pageId){
+    document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
+    document.getElementById(pageId).style.display='flex';
+  }
+
+  // --- Countdown Click ---
+  function countdownClick(){
+    document.getElementById('time').innerText='12:00 AM';
+    document.getElementById('date').innerText='11 March';
+    setTimeout(()=>nextPage('home'), 1000);
+  }
+
+  // --- Cake Cutting ---
+  const cake = document.getElementById('cake');
+  const cakePiece = document.getElementById('cakePiece');
+
+  cake.addEventListener('click', ()=>{
+    cakePiece.style.display='block';
+    for(let i=0;i<30;i++){
+      const conf = document.createElement('div');
+      conf.className='confetti';
+      conf.style.left = Math.random()*200 + 'px';
+      conf.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
+      document.getElementById('cakeCut').appendChild(conf);
+      setTimeout(()=>conf.remove(),1000);
+    }
+  });
+
+  // --- Slideshow ---
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('#slideshow img');
+  setInterval(()=>{
+    slides[slideIndex].classList.remove('active');
+    slideIndex=(slideIndex+1)%slides.length;
+    slides[slideIndex].classList.add('active');
+  },3000);
+
+  // --- Envelope / Love Letter ---
+  function openLetter(){
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letter');
+    envelope.classList.add('open');
+    setTimeout(()=>{
+      letter.style.display='block';
+      letter.style.opacity='1';
+      envelope.style.display='none';
+      startHearts();
+    },1000);
+  }
+
+  // --- Hearts Animation ---
+  function startHearts(){
+    const loveSection = document.getElementById('loveLetter');
+    setInterval(()=>{
+      const heart = document.createElement('div');
+      heart.className='heart';
+      heart.style.left=Math.random()*window.innerWidth+'px';
+      heart.style.fontSize=15+Math.random()*25+'px';
+      heart.innerHTML='❤️';
+      loveSection.appendChild(heart);
+      setTimeout(()=>heart.remove(),3000);
+    },200);
+  }
+</script>
+</body>
+</html>
